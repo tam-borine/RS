@@ -50,6 +50,7 @@ var diff = ee.Feature(updatedRoi.first()).difference(updatedFc.geometry(10), 10)
 
 var mergedFC = updatedFc.merge(diff)
 ```
+![Resulting image]({{ https://tam-borine.github.io/RS }}/diff.png)
 
 This worked! Horray! But now, how was I ever going to do it with reasonably sized data. I was tinkering around, gradually increases the size of these new bounds, when I realised that it was computing just fine, just taking a really long time! This made me think that the printing was actually the problem. Maybe the server side stuff was working and the data was processed, but just printing it here on the client was too computationally costly. In which case, maybe I don't need to worry too much just yet. I poked around and sure enough in the documentation there is [information about the unique client-server dynamic](https://developers.google.com/earth-engine/client_server) of GEE. 
 
