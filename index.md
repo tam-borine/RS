@@ -1,8 +1,6 @@
-## Welcome to GitHub Pages
+## Welcome to my blog on Remote Sensing
 
-You can use the [editor on GitHub](https://github.com/tam-borine/RS/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Here I will write about my learnings as I explore the field of Remote Sensing (RS)/ Earth Observation (EO). Currently that means research on cross-region domain adaptation of flood inundation classification, using SAR images from Sentinel-1 with Google Earth Engine anf TensorFlow. More soon.
 
 ### Markdown
 
