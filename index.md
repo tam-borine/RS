@@ -2,12 +2,60 @@
 
 Here I will write about my learnings as I explore the field of Remote Sensing (RS)/ Earth Observation (EO). Currently that means research on cross-region domain adaptation of flood inundation classification, using SAR images from Sentinel-1 with Google Earth Engine anf TensorFlow. More soon.
 
-## Posts
+## Posts 
 - [Creating problems for yourself](#problems)
+- [Autodownload shapefiles for a Copernicus EMS event](#crawler)
 - Some future post
 
+## Autodownloading shapefiles for a Copernicus EMS event {#crawler}
+_3rd October 2018_
+
+For my ground truth dataset I am using vector data, shapefiles, of the inundation extent as mapped by Copernicus Emergency Mapping Service, which dedicated emergency service users can activate during all kinds of natural disaster events. There list of activations and associated maps are [here](http://emergency.copernicus.eu/mapping/list-of-activations-rapid). It is far from a complete resource, there are probably quite a few important disasters that have been missed. However, it does give us ground truth data since they use GCPs during orthorectification.
+
+Although the website is fairly intuitive for humans, unfortunately there is no way to quickly download all their data. Ideally they would have an API or bulk download options. But instead to get the shapefiles for an event I need to click on each map's zip files, go to another page where I check a box disclaiming liability, and click another button. I figured, since I'm only going to do this once, I'll bear the brunt and do it. I needed 1.16GB worth of maps, which took me around 2 hours to manually download. 
+
+But then, whilst filtering these locally, I accidentally deleted many of the files I needed! Because each .zip packs them up, there's no way to re-download only the subset I had accidentally deleted, so I would have to re-download everything! The idea of this was super painful. But it was a good excuse to do what I really wanted to do, an ought to have done, from the outset: automate it!
+
+So, there were two routes:
+1. see if I could just `wget` the resources (this did not work, they've done some fancy thing where there servers take POSTs not GETs for the .zip folders and also need param tokens that are generated on the fly). 
+2. write some Javascript to simulate what I would be doing (you know by now this is my only option).
+
+So guess what I did! Ok I know you just want it so here it is: 
+
+```
+var zipClassName = 'views-field-field-component-file-vectors';
+
+var vectorfiles = document.getElementsByClassName(zipClassName);
+
+function initiateTimeOut(i) {
+    var f = vectorfiles[i];
+    var url = f.lastElementChild.firstElementChild.href;
+    window.newWin = window.open(url);
+    setTimeout(function() { doStuff(i,window.newWin) }, 4000);
+};
+function doStuff(i,win) {
+    console.log(win);
+    win.document.getElementById('edit-confirmation').click();
+    win.document.getElementById('edit-submit').click();
+    i++;
+    if (i <= vectorfiles.length) {
+        initiateTimeOut(i); 
+    }
+};
+  
+initiateTimeOut(0);
+```
+If you're wondering what's with all these timeouts and functions calling each other. The answer is Javascript is weird. More [here](https://stackoverflow.com/questions/24293376/javascript-for-loop-with-timeout). 
+
+If you want to try it out:
+1. Go to some event, say this one http://emergency.copernicus.eu/mapping/list-of-components/EMSR130 
+2. Right click on the page and open the browser's developer tools
+3. Execute the above code (you may need to click always allow for the site as the popup blocker gets triggered in Chrome in top right hand corner - do it the first time and then repeat these steps, you won't need to do it again)
+
+Also, there are lots of tasks this thing could generalise to. To adapt it obviously you'll need to change/remove the class names which are specific to this site (you can get these just from the page source) and also do the stuff you actually want to do on child windows in the `doStuff` function. Happy sort-of-somehow-maybe-semi-crawling!
 
 ## Creating problems for yourself {#problems}
+_17th September 2018_
 
 So I have been having some problems trying to create a training dataset in Google Earth Engine recently and thought it would be funny to share them.
 
