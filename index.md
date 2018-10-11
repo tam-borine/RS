@@ -5,7 +5,27 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 ## Posts 
 - [Creating problems for yourself](#problems)
 - [Autodownload shapefiles for a Copernicus EMS event](#crawler)
+- [Training my first FCN to do semantic segmentation](#firstFCN)
 - Some future post
+
+## Training my first FCN to do semantic segmentation {#firstFCN}
+_11th October 2018_
+
+It's kind of astonishing when you run something and expect it to fail in a million ways but it actually just works exactly how it should. It almost never happens, so it's actually a bit funny and confusing at first, but a welcome surprise!
+
+I'm trying to repeat the road segmentation task using code in [this tutorial](https://medium.com/nanonets/how-to-do-image-segmentation-using-deep-learning-c673cc5862ef) as a way to practically involved in CNN architectures. It's all well and good reading about the different possibilities but until you actually get some real data in and play around with the tools, it's hard to get a feel for what actually matters and what is going to take the bulk of time to tinker with. 
+
+In this case, it was just getting the data in. I did it with Google Cloud Service's storage buckets, but you can just use GDrive.
+
+If you want to see it, here's [my notebook](https://colab.research.google.com/drive/1T0h-u9sqTA21OGSsR3eRQK7_td-EtMgD) in action - it's actually training right now although unlikely anyone will see this in time, and the loss is going down most epochs!
+
+I know you might be thinking, what does roads have anything to do with flood area segmentation? Ok, I can draw some relations but none justifiably for this research. To be honest, the idea is to just get up and running with a clean dataset that has been repeated a few times with clear baselines, before opening the world of my data. If I can get a model working well on clean data, it'll be easier to think about what is going on and have a clearer vision when swapping in my data I will know that the problems I encounter must be something data related, or at least data-model interaction related, as opposed to I just built a crappy model. 
+
+So the idea is to really grok my model, and play around with the architecture with this one with the clean road segmentation data and then when ready swap my data in, and make adjustments as needed.
+
+I'm on epoch 21/14 and my loss is at 2.386! But most of the updates were done during the backprop first epoch actually (loss from epoch 1 was 1299.525 and loss from epoch 2 was 6.633 (see screenshot), which is what you tend to see on a good learning curve I think. Exciting times!
+
+![](https://tam-borine.github.io/RS/trainingFirstFCN.png)
 
 ## Autodownloading shapefiles for a Copernicus EMS event {#crawler}
 _3rd October 2018_
