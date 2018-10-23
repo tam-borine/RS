@@ -6,7 +6,19 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [Creating problems for yourself](#problems)
 - [Autodownload shapefiles for a Copernicus EMS event](#crawler)
 - [Training my first FCN to do semantic segmentation](#firstFCN)
+- [Awesome Geospatial list of tools](#awesomeGeospatial)
 - Some future post
+
+## Awesome Geospatial list of tools {#awesomeGeospatial}
+_23rd October 2018_
+
+Currently I'm trying to prepare/upscale the creation of my training set so that it is as fast as possible and easy to run. Whilst waiting for GEE to compute some stuff, I thought I'd take the opportunity to share [this Awesome list of geospatial tools/resources](https://github.com/sacridini/Awesome-Geospatial). Awesome lists are generally awesome and exist for many things, see the [Awesome List of Awesome Lists](https://github.com/sindresorhus/awesome) (don't worry, it stops there, otherwise it's starts getting a bit vacuous).
+
+The reason I'm doing this is because of that little problem I mentioned in my first post, about cutting out the flooded areas from the ROIs so we don't double label. Turns out that upscaling this is really computationally costly. And it seems to be mostly caused by this particular operation (although I am verifying that, slowly (should have started simple and then added code rather than visa versa to test contributing compute times)).
+
+So I'm going to probably need to do that cutting out bit outside of GEE, with some geospatial Python library or something. So now I'm checking out the options. I'll need something that can read in shapefiles. And something that can handle really complex multigeometries and cut them all out of the ROI efficiently. 
+
+Will post again with updates on this. For now, enjoy the Awesome Geospatial list!
 
 ## Training my first FCN to do semantic segmentation {#firstFCN}
 _11th October 2018_
