@@ -7,14 +7,16 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [Autodownload shapefiles for a Copernicus EMS event](#crawler)
 - [Training my first FCN to do semantic segmentation](#firstFCN)
 - [Awesome Geospatial list of tools](#awesomeGeospatial)
-- [Batch export to save time - GEE Python API] (#batchExport)
+- [Batch export to save time - GEE Python API](#batchExport)
 - Some future post
 
 
 ## Batch export to save time - GEE Python API {#batchExport}
 _25th October 2018_
 
-In my last post I was lamenting about how long some operations were taking in GEE and that I needed to find other tools outside to do the job. I thought more about this and realised that not only was it the time per se that was scaring me, but the fact it was not very repeatable. I had this little JS script doing everything, importing both vector data and S1 images, labelling, speckle filter, doing the expensive .difference stuff, making the training set...which meant these things were not modular/small enough to A. isolate the problems of and B. reasonably rerun pieces of. So I just decided to move the really time/compute costly part out and use ee.batch (for Python API only). This turned out (after some package updating stuff) to work well (see the image below of my new labelled FeatureCollection with no overlaps). It has also encouraged me to clean up my code and move it all to Python and leave JS for mostly experiments/tinkering. I think something I've learnt, or rather been reminded of is the [KISS Principle](https://en.wikipedia.org/wiki/KISS_principle). 
+In my last post I was lamenting about how long some operations were taking in GEE. Saying that I needed to find other tools outside to do the job. I thought more about this and realised that not only was it the time per se that was scaring me, but the fact it was not very repeatable that concerned me most deep down. I had this little JS script doing everything: importing both vector data and S1 images, labelling, speckle filtering, doing the expensive .difference stuff, making the training set...everything. Which meant these things were not modular/small enough to A. isolate problems and B. reasonably rerun pieces of. 
+
+So I just decided to move the really time/compute costly part out and use ee.batch (for Python API only). This turned out (after some package updating stuff) to work well (see the image below of my new labelled FeatureCollection with no overlaps). It has also encouraged me to clean up my code and move it all to Python and leave JS for mostly experiments/tinkering. I think something I've learnt, or rather been reminded of is the [KISS Principle](https://en.wikipedia.org/wiki/KISS_principle). 
 
 ![](https://tam-borine.github.io/RS/fc.png)
 
