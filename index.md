@@ -2,12 +2,95 @@
 
 Here I will write about my learnings as I explore the field of Remote Sensing (RS)/ Earth Observation (EO). Currently that means research on cross-region domain adaptation of flood inundation classification, using SAR images from Sentinel-1 with Google Earth Engine anf TensorFlow. More soon.
 
-## Posts
+## Posts 
 - [Creating problems for yourself](#problems)
+- [Autodownload shapefiles for a Copernicus EMS event](#crawler)
+- [Training my first FCN to do semantic segmentation](#firstFCN)
+- [Awesome Geospatial list of tools](#awesomeGeospatial)
 - Some future post
 
+## Awesome Geospatial list of tools {#awesomeGeospatial}
+_23rd October 2018_
+
+Currently I'm trying to prepare/upscale the creation of my training set so that it is as fast as possible and easy to run. Whilst waiting for GEE to compute some stuff, I thought I'd take the opportunity to share [this Awesome list of geospatial tools/resources](https://github.com/sacridini/Awesome-Geospatial). Awesome lists are generally awesome and exist for many things, see the [Awesome List of Awesome Lists](https://github.com/sindresorhus/awesome) (don't worry, it stops there, otherwise it's starts getting a bit vacuous).
+
+The reason I'm searching for new tools beyond GEE is because of that little problem I mentioned in my first post, about cutting out the flooded areas from the ROIs so we don't double label. Turns out that upscaling this is really computationally costly in GEE. It seems to be mostly caused by this particular `.difference` operation rather than the many other things I'm doing (although I am verifying that, slowly (should have started simple and then added code rather than visa versa to test contributing compute times)).
+
+So I'm going to probably need to do that bit outside of GEE, with some geospatial Python library or something. So now I'm checking out the options and the Awesome List is helpful. In terms of my needs. I'll need something that can read in shapefiles. And something that can handle really complex multigeometries and cut them all out of the ROI efficiently. 
+
+Will post again with updates on this. For now, enjoy the Awesome Geospatial list!
+
+## Training my first FCN to do semantic segmentation {#firstFCN}
+_11th October 2018_
+
+It's kind of astonishing when you run something and expect it to fail in a million ways but it actually just works exactly how it should. It almost never happens, so it's actually a bit funny and confusing at first, but a welcome surprise!
+
+I'm trying to repeat the road segmentation task using code in [this tutorial](https://medium.com/nanonets/how-to-do-image-segmentation-using-deep-learning-c673cc5862ef) as a way to practically try out the Fully Convolutional Network (FCN), a kind of CNN architecture that was introduced by [Long et. al](https://arxiv.org/abs/1411.4038) for the segmentation problem and uses inverse pooling to upsample because segmentation cares about spatial relationships unlike, say, plain image recognition.
+
+I'm doing this because it's all well and good reading about the different architectural possibilities, and [there are so many great ones](http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review), but until you actually get some real data in and play around with the tools, it's hard to get a feel for what actually matters and what is going to take the bulk of time to tinker with. In this case, it was just getting the data in and noticing that dependency was missing. I did it with Google Cloud Service's storage buckets, but you can just use GDrive.
+
+If you want to see it, here's [my notebook](https://colab.research.google.com/drive/1T0h-u9sqTA21OGSsR3eRQK7_td-EtMgD) in action - it's actually training right now although unlikely anyone will see this in time, and the loss is going down most epochs!
+
+I know you might be thinking, what does roads have anything to do with flood area segmentation? Ok, I can draw some relations but none justifiably for this research. To be honest, the idea is to just get up and running with a clean dataset that has been repeated a few times with clear baselines, before opening the world of my data. If I can get a model working well on clean data, it'll be easier to think about what is going on and have a clearer vision when swapping in my own data. I will know that the problems I encounter must be something data related, or at least data-model interaction related, as opposed to the very real possibility that I just built a crappy model for any segmentation task...even one with reasonable data. 
+
+So the idea is to really grok my model, asking the questions and making the decisions here, and play around with the architecture with this one with the clean road segmentation data and then when ready swap my data in, and make adjustments as needed.
+
+I'm on epoch 21/14 and my loss is at 2.386! But most of the updates were done during the backprop first epoch actually (loss from epoch 1 was 1299.525 and loss from epoch 2 was 6.633 (see screenshot), which is what you tend to see on a good learning curve I think. Exciting times!
+
+![](https://tam-borine.github.io/RS/trainingFirstFCN.png)
+
+Update:
+There was a jump back up to 20 loss at epoch 29 but it went back down but only to ~3, which is worse than it was before whatever happened at epoch 29. This is the kind of thing that is worth investigating, and learning how to investigate now. 
+
+## Autodownloading shapefiles for a Copernicus EMS event {#crawler}
+_3rd October 2018_
+
+For my ground truth dataset I am using vector data, shapefiles, of the inundation extent as mapped by Copernicus Emergency Mapping Service, which dedicated emergency service users can activate during all kinds of natural disaster events. There list of activations and associated maps are [here](http://emergency.copernicus.eu/mapping/list-of-activations-rapid). It is far from a complete resource, there are probably quite a few important disasters that have been missed. However, it does give us ground truth data since they use GCPs during orthorectification. **Edit** this is not sufficient to consitute ground truth data and will actually be data used for cross-referencing since that's they best we can do, just ignore wherever I say GT.
+
+Although the website is fairly intuitive for humans, unfortunately there is no way to quickly download all their data. Ideally they would have an API or bulk download options. But instead to get the shapefiles for an event I need to click on each map's zip files, go to another page where I check a box disclaiming liability, and click another button. I figured, since I'm only going to do this once, I'll bear the brunt and do it. I needed 1.16GB worth of maps, which took me around 2 hours to manually download. 
+
+But then, whilst filtering these locally, I accidentally deleted many of the files I needed! Because each .zip packs them up, there's no way to re-download only the subset I had accidentally deleted, so I would have to re-download everything! The idea of this was super painful. But it was a good excuse to do what I really wanted to do, an ought to have done, from the outset: automate it!
+
+So, there were two routes:
+1. see if I could just `wget` the resources (this did not work, they've done some fancy thing where there servers take POSTs not GETs for the .zip folders and also need param tokens that are generated on the fly). 
+2. write some Javascript to simulate what I would be doing (you know by now this is my only option).
+
+So guess what I did! Ok I know you just want it so here it is: 
+
+```
+var zipClassName = 'views-field-field-component-file-vectors';
+
+var vectorfiles = document.getElementsByClassName(zipClassName);
+
+function initiateTimeOut(i) {
+    var f = vectorfiles[i];
+    var url = f.lastElementChild.firstElementChild.href;
+    window.newWin = window.open(url);
+    setTimeout(function() { doStuff(i,window.newWin) }, 4000);
+};
+function doStuff(i,win) {
+    console.log(win);
+    win.document.getElementById('edit-confirmation').click();
+    win.document.getElementById('edit-submit').click();
+    i++;
+    if (i <= vectorfiles.length) {
+        initiateTimeOut(i); 
+    }
+};
+  
+initiateTimeOut(0);
+```
+If you're wondering what's with all these timeouts and functions calling each other. The answer is Javascript is weird. More [here](https://stackoverflow.com/questions/24293376/javascript-for-loop-with-timeout). 
+
+If you want to try it out:
+1. Go to some event, say this one http://emergency.copernicus.eu/mapping/list-of-components/EMSR130 
+2. Right click on the page and open the browser's developer tools
+3. Execute the above code (you may need to click always allow for the site as the popup blocker gets triggered in Chrome in top right hand corner - do it the first time and then repeat these steps, you won't need to do it again)
+
+Also, there are lots of tasks this thing could generalise to. To adapt it obviously you'll need to change/remove the class names which are specific to this site (you can get these just from the page source) and also do the stuff you actually want to do on child windows in the `doStuff` function. Happy sort-of-somehow-maybe-semi-crawling!
 
 ## Creating problems for yourself {#problems}
+_17th September 2018_
 
 So I have been having some problems trying to create a training dataset in Google Earth Engine recently and thought it would be funny to share them.
 
@@ -50,6 +133,7 @@ var diff = ee.Feature(updatedRoi.first()).difference(updatedFc.geometry(10), 10)
 
 var mergedFC = updatedFc.merge(diff)
 ```
+![](https://tam-borine.github.io/RS/diff.png)
 
 This worked! Horray! But now, how was I ever going to do it with reasonably sized data. I was tinkering around, gradually increases the size of these new bounds, when I realised that it was computing just fine, just taking a really long time! This made me think that the printing was actually the problem. Maybe the server side stuff was working and the data was processed, but just printing it here on the client was too computationally costly. In which case, maybe I don't need to worry too much just yet. I poked around and sure enough in the documentation there is [information about the unique client-server dynamic](https://developers.google.com/earth-engine/client_server) of GEE. 
 
