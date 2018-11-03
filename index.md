@@ -8,8 +8,20 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [Training my first FCN to do semantic segmentation](#firstFCN)
 - [Awesome Geospatial list of tools](#awesomeGeospatial)
 - [Batch export to save time - GEE Python API](#batchExport)
+- [The little things](#littleThings)
 - Some future post
 
+
+## The little things (reminders of human falibility) {#littleThinigs}
+_3rd November 2018_
+
+I just found a typo on Copernicus' Emergency Mapping Service website. Ok big deal. I'm not writing a post about how they should get more meticulous and how shocking it is for them to have a typo. But the way I found this out was interesting, and really just reminded me how great automation is. Not just because it's more efficient, but also because it is more repeatable and good at finding inconsistencies (like typos).
+
+So I have some scripts that do some stuff and one just blew up trying to reconcile two lists of site names, one which was from the webpage and one taken out of the filenames themselves. It was literally one letter difference (Kyonkadun is a real place in Myanmar, Kyondadun is not...if you google them respectively you will see the only hits for the latter is [Cop EMS' webpage](http://emergency.copernicus.eu/mapping/list-of-components/EMSR130/ALL/EMSR130_15KYONDADUN) who originated the typo).
+
+One character might not seem like a big deal, but it is. If a string doesn't match, and you have something dependening on it to do so, you flip the outcomes from True to False or vice versa. That can be a big deal. One of my favourite examples of a little bug was the [Y2K bug](https://en.wikipedia.org/wiki/Year_2000_problem), when scientists forgot about the new milleniumm and lost over 300bn dollars. 
+
+There are definitely classes of error that are caused by the opposite, over-reliance on automation and technology, but I think on the little things humans are usually more falible. I don't even want to re-read my blog and see how many typos I have!
 
 ## Batch export to save time - GEE Python API {#batchExport}
 _25th October 2018_
