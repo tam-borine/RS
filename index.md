@@ -12,7 +12,7 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - Some future post
 
 
-## The little things (reminders of human falibility) {#littleThinigs}
+## The little things (reminders of human falibility) {#littleThings}
 _3rd November 2018_
 
 I just found a typo on Copernicus' Emergency Mapping Service website. Ok big deal. I'm not writing a post about how they should get more meticulous and how shocking it is for them to have a typo. But the way I found this out was interesting, and really just reminded me how great automation is. Not just because it's more efficient, but also because it is more repeatable and good at finding inconsistencies (like typos).
