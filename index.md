@@ -21,8 +21,13 @@ One of these is the question of how I choose the dates for pre-flood images give
 
 So I decided to just export a ALL THE difference images for my sites so I could visually inspect the quality of them, since for now will be the input to my classifier, it's good to get a feel for their variation. Here are some below. As you can see the quality and obviousness of flooded area is highly variable. It is unclear whether choosing pre-flood dates better (by incorporating regional climate info) is  going to help. There could be many other reasons the images that look bad have turned out that way.
 
+We can see that Feres and Selby turned out quite nicely. I think what we see in Yangon West, Myanmar, might be an example of my poor choice of pre-flood dates. This is because we see both a bright and a dark area that looks like part of the same flood. This would naturally happen if a big flood moved, literally causing positive change in the area it came from and negative in the area it landed in. Grile shows the coastal flood but somehow the quality is really bad and it's unclear why. Also Leeds is extremely noisy and any signal is hard to see. And it is unclear why.
+
 ![](https://tam-borine.github.io/RS/Feres.png)
 Feres, Greece
+
+![](https://tam-borine.github.io/RS/YangonWest.png)
+Yangon West, Myanmar
 
 ![](https://tam-borine.github.io/RS/Leeds.png)
 Leeds, UK
@@ -30,11 +35,8 @@ Leeds, UK
 ![](https://tam-borine.github.io/RS/Grile.png)
 Grile, Albania
 
-![](https://tam-borine.github.io/RS/Hinthada.png)
-Hinthada, Myanmar
-
-![](https://tam-borine.github.io/RS/CrossHills.png)
-Cross Hills, UK
+![](https://tam-borine.github.io/RS/Selby.png)
+Selby, UK
 
 
 ## The little things (reminders of human falibility) {#littleThings}
