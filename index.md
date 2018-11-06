@@ -9,7 +9,32 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [Awesome Geospatial list of tools](#awesomeGeospatial)
 - [Batch export to save time - GEE Python API](#batchExport)
 - [The little things](#littleThings)
+- [All the difference images](#diffImgs)
 - Some future post
+
+## All the difference images {#diffImgs}
+_6th November 2018_
+
+I've been upscaling the preprocessing pipeline so that it's fully automated and I can just regenerate TFRecords (the halfway checkpoint between that and my ML classification pipeline) in one go, and a bunch of stuff has occurred to me as useful that I had briefly considered but mostly glossed over in the interest of moving on. 
+
+One of these is the question of how I choose the dates for pre-flood images given that it naturally varies from region to region with their seasons and climates. The during-flood dates are easy (although still have some variation because floods occur on different durations), but I have data on when each flood occurred so at least somewhere to go from. 
+
+So I decided to just export a ALL THE difference images for my sites so I could visually inspect the quality of them, since for now will be the input to my classifier, it's good to get a feel for their variation. Here are some below. As you can see the quality and obviousness of flooded area is highly variable. It is unclear whether choosing pre-flood dates better (by incorporating regional climate info) is  going to help. There could be many other reasons the images that look bad have turned out that way.
+
+![](https://tam-borine.github.io/RS/Feres.png)
+Feres, Greece
+
+![](https://tam-borine.github.io/RS/Leeds.png)
+Leeds, UK
+
+![](https://tam-borine.github.io/RS/Grile.png)
+Grile, Albania
+
+![](https://tam-borine.github.io/RS/Hinthada.png)
+Hinthada, Myanmar
+
+![](https://tam-borine.github.io/RS/CrossHills.png)
+Cross Hills, UK
 
 
 ## The little things (reminders of human falibility) {#littleThings}
