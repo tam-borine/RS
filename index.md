@@ -10,7 +10,21 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [Batch export to save time - GEE Python API](#batchExport)
 - [The little things](#littleThings)
 - [All the difference images](#diffImgs)
+- [The good-bad news](#goodBadNews) 
 - Some future post
+
+## The good-bad news {#goodBadNews}
+_10th November 2018_
+
+I've been struggling with polygons forever. It really feels that way. There was the problem that came up in the first post. And many computational limit hitting from operating on vector data. Today I decided I had had enough and was going to backthumb and try out the 'convert my shapefiles to raster at the outset' approach.
+
+In hindsight, I obviously should have tried this earlier. I thought it was going to be more complicated than it was. There are some really nice simple masking and painting functions in GEE that have just made everything so much easier. It's a little bit shocking, things are now orders of magnitude simpler and faster and I can finally be done with the preprocessing pipeline.
+
+So the good news is I found a much simpler way that is great. The bad news is that if I'd tried this out at the beginnning (which I did actually consider briefly), I could have saved dozens of hours.
+
+Oh well, we are where we are. Check out how simple it is:
+
+![](https://tam-borine.github.io/RS/yay_for_rasterizing.png)
 
 ## All the difference images {#diffImgs}
 _6th November 2018_
