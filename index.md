@@ -10,8 +10,24 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [Batch export to save time - GEE Python API](#batchExport)
 - [The little things](#littleThings)
 - [All the difference images](#diffImgs)
-- [The good-bad news](#goodBadNews) 
+- [The good-bad news](#goodBadNews)
+- [The good-bad news part 2] (#goodBadNews2)
 - Some future post
+
+## The good-bad news PART 2 {#goodBadNews2}
+_15th November 2018_
+
+So I am finally training a simple pre canned Tensorflow estimator on my data, and I literally spent the whole day yesterday staring at wild looking loss curves with no idea what was going on. I tried tweaking params such as batch size, learning rate etc. and that did definitely change the kind of wildness, but nevertheless every loss curve was definitely not going down in the slightest, and many were not better than random chance. Take a look:
+
+![](https://tam-borine.github.io/RS/wild_training_loss.png)
+
+There are so many things that could be going wrong here, I could not have enough data, my model could be too complex for my data, or visa versa, there could be a bug somewhere, the spatial coordinates embedding could not be accurately capturing that feature. There is a lot to work on. But honestly because I have so little experience in deep learning, I have no intuitions for what 'better' looks like. They all look wild to me. Differently, but equally, wild and random. But then, my friend gave me the idea of just cheating. Ie. give the network the answer (labels) as a feature and see if it can make use of that to cheat it's way into performing. So the good news is, I now have a lovely loss curve:
+
+![](https://tam-borine.github.io/RS/cheating_training_loss.png)
+
+Of course the bad news is that this model is cheating as it has the answers as an input feature, so it would be very surprising if it did not find it could just win with using that feature. But at least it narrows down (maybe, I hope) the range of possible things that could be going wrong. We know the model understands it's objective, and that it can make use of the features being inputted to it. But that's about it.
+
+At least I have a curve to aspire to now.
 
 ## The good-bad news {#goodBadNews}
 _10th November 2018_
