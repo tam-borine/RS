@@ -11,7 +11,7 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [The little things](#littleThings)
 - [All the difference images](#diffImgs)
 - [The good-bad news](#goodBadNews)
-- [The good-bad news part 2] (#goodBadNews2)
+- [The good-bad news part 2](#goodBadNews2)
 - Some future post
 
 ## The good-bad news PART 2 {#goodBadNews2}
