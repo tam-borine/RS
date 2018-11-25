@@ -24,7 +24,7 @@ TF's new eager execution mode promised all of this and now seemed an apt opportu
 
 Well, it took me just a few hours to start getting accuracy that went up and loss that went down overall (albeit still very noisely - I'm working on it). Take a look!
 
-![](https://tam-borine.github.io/RS/yay_progress.png)
+![](https://tam-borine.github.io/RS/good_loss_curve.png)
 
 Until next time!
 
