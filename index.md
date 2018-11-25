@@ -26,6 +26,8 @@ Well, it took me just a few hours to start getting accuracy that went up and los
 
 ![](https://tam-borine.github.io/RS/yay_progress.png)
 
+![](https://tam-borine.github.io/RS/wild_training_loss.png)
+
 Until next time!
 
 ## The good-bad news PART 2 {#goodBadNews2}
