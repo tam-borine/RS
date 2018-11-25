@@ -1,6 +1,6 @@
 ## Welcome to my blog on Remote Sensing
 
-Here I will write about my learnings as I explore the field of Remote Sensing (RS)/ Earth Observation (EO). Currently that means research on cross-region domain adaptation of flood inundation classification, using SAR images from Sentinel-1 with Google Earth Engine anf TensorFlow. More soon.
+Here I write about stuff as I pursue my dissertation on cross-region domain adaptation of flood inundation area segmentation, using SAR images from Sentinel-1 with Google Earth Engine and TensorFlow. The goal is to build a pre-trained model capable of adapting to new unseen regions and performing comparatively better on them (dataset shift problem). 
 
 ## Posts 
 - [Creating problems for yourself](#problems)
@@ -12,7 +12,21 @@ Here I will write about my learnings as I explore the field of Remote Sensing (R
 - [All the difference images](#diffImgs)
 - [The good-bad news](#goodBadNews)
 - [The good-bad news part 2](#goodBadNews2)
+- [Curving in promising directions with TF eager execution](#eagerExecution)
 - Some future post
+
+## Curving in promising directions with TF eager execution {#eagerExecution}
+_25th November 2018_
+
+If you saw my last post, you'll know that my loss curve was not looking too happy. I literally had to cheat, by giving the labels as an input feature, before my nueral net could figure anything out. So I did not actually find out what was going wrong (probably there were many things). I gave up and decided to use an approach that was more interrogatable and visible. I need to be able to debug and inspect properly. 
+
+TF's new eager execution mode promised all of this and now seemed an apt opportunity to try it. So I did. Best decision ever. I also ditched TF's high level Estimator API in favour of Keras and writing my own simple layers and training loop. Keras is so much easier to understand what's going on and debug for me as a newb: some black boxes are too high level, others are better. I began by reading a simple [tutorial](https://medium.com/tensorflow/building-an-iris-classifier-with-eager-execution-13c00a32adb0), and could adapt it to my own data reasonably confidently because of the new transparency.
+
+Well, it took me just a few hours to start getting accuracy that went up and loss that went down overall (albeit still very noisely - I'm working on it). Take a look!
+
+![](https://tam-borine.github.io/RS/yay_progress.png)
+
+Until next time!
 
 ## The good-bad news PART 2 {#goodBadNews2}
 _15th November 2018_
