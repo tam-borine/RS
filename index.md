@@ -13,7 +13,25 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [The good-bad news](#goodBadNews)
 - [The good-bad news part 2](#goodBadNews2)
 - [Curving in promising directions with TF eager execution](#eagerExecution)
+- [New Year update](#newyearupdate)
 - Some future post
+
+## New Year update
+_13th January 2019_
+
+Ok so it's been ages since I've posted and feel like it's not fair to all my millions of readers (joke) considering so much has been going on!
+
+Alright what's new.
+
+Well something massively on my attention right now is this new ML module I've started, which is pretty awesome. I've been doing linear algebra all week, which is really fun because I didn't study math formally ever and it seems like a very useful way to think about transformations. The false Cartesian split from the OO programmer in me between functions and state has been broken forever (it was kinda wavering already from functional programming but now I'm convinced it's better), matrices as composed transformations is just so simple. Anyway I'm not going to tell you about that now other than to say 3b1b's videos are the best, and I also was confused when I learnt about dot product before linear eq systems and I have no idea why it's taught in that order. I became quite opinionated about what order it made sense to understand things in this week. We had a lecture that reviewed all of lin alg in 1h (I kid not) which I only half groked. It was a review because it covered what an undergrad math, physics or maybe cs student would do over a term at least. The lecturer acknowledged this himself and said something funny like "there are two types of people in this room, people who need to know this and people who already know this, and they are both going to hate the next hour for different reasons". Afterwards the guy sitting next to me said he did lin alg over two semesters during undergrad and that 1h covered 70% of it. Then I felt less bad about only half understanding after a week of learning.
+
+Ok enough whining about how I don't get to do enough lin alg. Anyway theory is super helpful for my dissertation! I've been thinking more deeply about the [bias-variance trade off](https://www.dataquest.io/blog/learning-curves-machine-learning/) lately and reflecting on my learning curves (will show some screenshots next week). I've also been thinking a lot after reading stuff in the paper [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf) that should be obvious to me by now but feels like I need to hear them 1000x (check it out). And then I also found [this cool post](http://ai.stanford.edu/~zayd/why-is-machine-learning-hard.html) about why debugging in machine learning is really hard compared to regular programming (spoiler: extra dimensions of error sources are the model and the data). I leave you with his awesome diagrams (from 2d bug sources generally coding to 4d with ML). Until next week!
+
+![](https://tam-borine.github.io/RS/regular_debugging_dimensions.png)
+
+![](https://tam-borine.github.io/RS/plus_model_debugging_dimension.png)
+
+![](https://tam-borine.github.io/RS/plus_data_debugging_dimension.png)
 
 ## Curving in promising directions with TF eager execution {#eagerExecution}
 _25th November 2018_
