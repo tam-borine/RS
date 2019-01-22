@@ -14,7 +14,19 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [The good-bad news part 2](#goodBadNews2)
 - [Curving in promising directions with TF eager execution](#eagerExecution)
 - [New Year update](#newyearupdate)
+- [Transpose Convolutions - a misnomer?](#transposeconvolutions)
 - Some future post
+
+## Transpose Convolutions - a misnomer?
+_22nd January 2019_
+
+I'm implementing the final version of my CNN which is fully convolutional and inspired by the U-Net. The characteristic encoder-decoder architecture helps the problem that segmentation has (but whole-image classification does not) which is preservation of the spatial ordering of pixel values within each image, because it must be reconstructed into a segmentation map at the end. 
+
+So basically, when you do a convolution over an input image, the output map is usually of smaller dimensions. You're capturing abstract and important features when you do this, but you are downsampling and losing resolution/ information. But because the convolution operation is discrete, if you want to reconstruct the initial image's spatial structure, which you absolutely need to for pixel-wise prediction, you can just track the ratios of your convolution matrices transformations, and do the same things on the way up.
+
+Transpose convolution does not undo convolution operations. Deconvolution, another synonym, is even more misleading. You will not get and inverted version of whatever you started with, at any stage. This is because the kernel weights are _learned_. And whatever was learnt on the way down was forgotten. So the pixel values and weights are not having any form of inversion happening, it is only the structure that is being redistributed, literally the order of the pixels. (Although skip connections might affect this). 
+
+So here's a great and very simple short [explanation](https://towardsdatascience.com/up-sampling-with-transposed-convolution-9ae4f2df52d0) of Transpose Convolution, check it out!
 
 ## New Year update
 _13th January 2019_
