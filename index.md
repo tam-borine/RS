@@ -22,7 +22,7 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 ## Start Here (or - what am I even doing?)
 _28th January 2019_
 
-I thought it was probably about time to add a little bit about what I am actually doing on a high level in case anybody actually looks at this blog and then wonders about all the low level moanings!
+I thought it was probably about time to add a little bit about what I am actually doing on a high level in case anybody actually looks at this blog and then wonders what I'm on about!
 
 I understand I have given nothing in between either, no outline of my methodology or anything, more just random exclamations of weird things. But hey, you can always write to me if you want that right.
 
