@@ -15,7 +15,20 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Curving in promising directions with TF eager execution](#eagerExecution)
 - [New Year update](#newyearupdate)
 - [Transpose Convolutions - a misnomer?](#transposeconvolutions)
+- [Start here](#abstract)
 - Some future post
+
+
+## Start Here (or - what am I even doing?)
+_28th January 2019_
+
+I thought it was probably about time to add a little bit about what I am actually doing on a high level in case anybody actually looks at this blog and then wonders about all the low level moanings!
+
+I understand I have given nothing in between either, no outline of my methodology or anything, more just random exclamations of weird things. But hey, you can always write to me if you want that right.
+
+But here's an abstract! It's a draft, of course, I'm still writing things up (I love [Overleaf](https://www.overleaf.com)). So a bit busy but will share more about results soon as that's done. I'll leave you on this cliffhanger - my posts might be a bit sparser whilst I write up.
+
+![](https://tam-borine.github.io/RS/abstract.png)
 
 ## Transpose Convolutions - a misnomer?
 _22nd January 2019_
