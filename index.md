@@ -19,7 +19,7 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Segmentation maps](#segmentationmaps)
 - Some future post
 
-## Segmentation maps
+## Segmentation maps {#segmentationmaps}
 _31st January 2019_
 
 Just wanted to share some nice segmentation results that are popping out of my conv net. It's so cool that this is working on my real data! For sure some of the labels are not great, but here's a good one. Here we have in order the original image, the labelled image, and the predicted image (probabilities for classes expressed as Grayscale by the output layer of CNN).
@@ -35,7 +35,7 @@ And here is my accuracy and loss, looking reasonable. I've moved on to the domai
 ![](https://tam-borine.github.io/RS/fcn_loss.png)
 
 
-## Start Here (or - what am I even doing?)
+## Start Here (or - what am I even doing?) {#abstract}
 _28th January 2019_
 
 I thought it was probably about time to add a little bit about what I am actually doing on a high level in case anybody actually looks at this blog and then wonders what I'm on about!
@@ -46,7 +46,7 @@ But here's an abstract! It's a draft, of course, I'm still writing things up (I 
 
 ![](https://tam-borine.github.io/RS/abstract.png)
 
-## Transpose Convolutions - a misnomer?
+## Transpose Convolutions - a misnomer? {#transposeconvolutions}
 _22nd January 2019_
 
 I'm implementing the final version of my CNN which is fully convolutional and inspired by the U-Net. The characteristic encoder-decoder architecture helps the problem that segmentation has (but whole-image classification does not) which is preservation of the spatial ordering of pixel values within each image, because it must be reconstructed into a segmentation map at the end. 
@@ -57,7 +57,7 @@ Transpose convolution does not undo convolution operations. Deconvolution, anoth
 
 So here's a great and very simple short [explanation](https://towardsdatascience.com/up-sampling-with-transposed-convolution-9ae4f2df52d0) of Transpose Convolution, check it out!
 
-## New Year update
+## New Year update {#newyearupdate}
 _13th January 2019_
 
 Ok so it's been ages since I've posted and feel like it's not fair to all my millions of readers (joke) considering so much has been going on!
