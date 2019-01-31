@@ -16,7 +16,23 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [New Year update](#newyearupdate)
 - [Transpose Convolutions - a misnomer?](#transposeconvolutions)
 - [Start here](#abstract)
+- [Segmentation maps](#segmentationmaps)
 - Some future post
+
+## Segmentation maps
+_31st January 2019_
+
+Just wanted to share some nice segmentation results that are popping out of my conv net. It's so cool that this is working on my real data! For sure some of the labels are not great, but here's a good one. Here we have in order the original image, the labelled image, and the predicted image (probabilities for classes expressed as Grayscale by the output layer of CNN).
+
+![](https://tam-borine.github.io/RS/image49.png)
+
+![](https://tam-borine.github.io/RS/image49prediction.png)
+
+And here is my accuracy and loss, looking reasonable. I've moved on to the domain adaptation part now, which is very exciting, so stay tuned for the results on them coming soon.
+
+![](https://tam-borine.github.io/RS/fcn_accuracy.png)
+
+![](https://tam-borine.github.io/RS/fcn_loss.png)
 
 
 ## Start Here (or - what am I even doing?)
