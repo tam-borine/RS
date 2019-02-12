@@ -17,7 +17,23 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Transpose Convolutions - a misnomer?](#transposeconvolutions)
 - [Start here](#abstract)
 - [Segmentation maps](#segmentationmaps)
+- [Dealing with a class-imbalanced dataset](#imbalancedclasses)
 - Some future post
+
+## Dealing with a class-imbalanced dataset {#imbalancedclasses}
+_12th February 2019_
+
+One of my big learnings was the importance of taking class-imbalanced datasets seriously, and I learnt this the hard way.
+
+By that I mean, I seemed to be getting good accuracy in my model. But actually this metric was pretty misleading. It's easy to learn to get 90% accuracy if 90% of your data come from one class, you simply predict that class every time. So I've also learnt the importance of baselines, again the hard way. Now I have a dumb model that just always guesses the most common class and I need to improve on that significantly.
+
+I've also changed my accuracy metric, because the problem with plain accuracy is that it does not capture what we care about, but conflates it. We want a metric that is [invariant to prevalance](https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers#Impact_of_prevalence_on_prediction_values) in the population. So I've switched to the F1-score for now, which is the harmonic mean of precision and recall.
+
+Additionally it is not enough to change my accuracy measure. That is my signal, my feedback from my model. But my model needs feedback itself! That is the loss, the cost calculated each iteration from the cross entropy. By default the learning will overrely on updates gained from the most common class, so we want to downweight that and instead weight higher the gradients associated with the less common class (flooded areas) as that is what we want to learn!
+
+To do this I simply multipled a matrix of weights in the final layer that is inversely proportional to proportion of each class. The results seem to make more sense now. Less pleasing, but more realistic, and more interpretable. 
+
+Something that's not so obvious is where to pick the threshold between precision and recall, as it is a trade-off and problem specific. I like the diagrams on it [here](https://developers.google.com/machine-learning/crash-course/classification/precision-and-recall). Another way is to use ROC, which I may do, but one thing at a time.
 
 ## Segmentation maps {#segmentationmaps}
 _31st January 2019_
