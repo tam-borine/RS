@@ -18,7 +18,33 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Start here](#abstract)
 - [Segmentation maps](#segmentationmaps)
 - [Dealing with a class-imbalanced dataset](#imbalancedclasses)
+- [Interpreting results](#results)
 - Some future post
+
+## Interpreting results {#results}
+_27th February 2019_
+
+So I got some results. Some good, some weird. Then I'll tell the story of how the weird one got weird(it's nice because there is actually a clue in the figure as to what is going wrong so you can guess before I tell you). Anyway here are some figures.
+
+![](https://tam-borine.github.io/RS/good_despite_GT_test.png)
+
+This looks pretty good, we can see even though our GT (ground truth) label is rubbish, that our predictions pick up on the features in the original input image and classify it quite well.
+
+![](https://tam-borine.github.io/RS/hallucinating_from_GT.png)
+
+This is pretty weird and worrying. We can see here that our model has learnt to imitate the GT label and ignore the original input image, even though it has never seen this GT label before (the test dataset is for making forward passes only, so no labels are fed back and they are not given to the training set either).
+
+My first thought on seeing this weird latter result was that we had contaminated the training data with the labels from the test data somehow. I double, nay, triple checked this wasn't the case. And then fell into despair. Surely this was not an example of reward hacking? I guess it is plausible that the order of inputting images could somehow be gameable since due to Colab processing limits we could not shuffle with as big buffer sizes as we wanted (our datasets are large). But surely this is just too good of a gaming to get from that information... it's just so... detailed. 
+
+Sure enough there was another silly thing I had done wrong. And the clue was staring me in the face the whole time!
+
+Entropy. Why was I calculating the entropy and thresholding that as my predictions? Anyway, I fixed it and I do not get those weird examples anymore, yay!
+
+So the take-away is, do sanity checks by reading over your code. 
+
+
+
+
 
 ## Dealing with a class-imbalanced dataset {#imbalancedclasses}
 _12th February 2019_
