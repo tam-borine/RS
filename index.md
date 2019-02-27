@@ -18,10 +18,10 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Start here](#abstract)
 - [Segmentation maps](#segmentationmaps)
 - [Dealing with a class-imbalanced dataset](#imbalancedclasses)
-- [Interpreting results](#results)
+- [Weird Result](#weirdresults)
 - Some future post
 
-## Interpreting results {#results}
+## Weird Result {#weirdresults}
 _27th February 2019_
 
 So I got some results. Some good, some weird. Then I'll tell the story of how the weird one got weird(it's nice because there is actually a clue in the figure as to what is going wrong so you can guess before I tell you). Anyway here are some figures.
@@ -41,9 +41,6 @@ Sure enough there was another silly thing I had done wrong. And the clue was sta
 Entropy. Why was I calculating the entropy and thresholding that as my predictions? Anyway, I fixed it and I do not get those weird examples anymore, yay!
 
 So the take-away is, do sanity checks by reading over your code. 
-
-
-
 
 
 ## Dealing with a class-imbalanced dataset {#imbalancedclasses}
