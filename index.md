@@ -19,7 +19,29 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Segmentation maps](#segmentationmaps)
 - [Dealing with a class-imbalanced dataset](#imbalancedclasses)
 - [Weird Result](#weirdresults)
+- [More segmentation maps](#moresegmentationmaps)
 - Some future post
+
+## More segmentation maps {#moresegmentationmaps}
+_6th March 2019_
+
+I wanted to share some segmentation maps in this interlude whilst I am writing up. I have some surprising results, but you will have to wait for those. 
+
+These maps are since fixing the weird thing mentioned in my last post (TL;DR sanity check your code). Now I am visualising the right thing :-) 
+
+Here are some interesting ones:
+
+![](https://tam-borine.github.io/RS/good_label_too.png)
+
+![](https://tam-borine.github.io/RS/better_than_label.png)
+
+As you can see, despite poor labels we still do well. 
+
+![](https://tam-borine.github.io/RS/agri.png)
+
+And we can learn quite particular, different, spatial features too.
+
+It's worth noting that more than half the time our labels are very unrepresentative of the image, meaning the model is learning well despite lots of confusing labels. This seems good.
 
 ## Weird Result {#weirdresults}
 _27th February 2019_
