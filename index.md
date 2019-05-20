@@ -22,6 +22,34 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [More segmentation maps](#moresegmentationmaps)
 - Some future post
 
+## Emerging from the hole after write up {#afterwriteup}
+_20th May 2019_
+
+It has been a while since my last post, as I've been writing up the dissertation and submitted it and awaiting feedback. Some of the feedback I got on my draft was that it was too technical and needing to be written well enough so that others could understand it who weren't in this very specific area. To my amazement, I put out a request on social media for interested people to give comments that would make it more readable and 5 random people got back and did this for me. I am very grateful to them for this! 
+
+Before I give you the results so far, let me tell you what's coming up: 
+- I am making a research summary post here I'll post in a couple of days, as I realise that is lacking. This will include an outline of the objectives, method and results.
+- I probably going to release the thing in full as a preprint on arXiv in a week or two.
+- I am planning to clean up the code and make it reproducable from the outside.
+- I plan to pull in more data since a lot of floods have happened in the last 8 months since I last pulled data!
+- I plan to hold out more "target" sites as then we can draw stronger conclusions.
+
+That being said, here is the punchline I promised (this is from the conclusion, here I'll tell you some details about the first point only as that was the bulk of the analysis):
+
+* CNNs are capable of adapting to perform well on new, unseen regions without additional adaptation techniques, for the data and sites we tried. 
+* Images from different regions are likely to suffer from some covariate shift.
+* Concept shift is hard to locate but may also be ameliorated with deep learning methods.
+
+...The key findings were surprising: that there is no significant difference in classifier prediction ability between the Vanilla and the Naive Transfer set up, as measured by the F1-scores (Table 4). This removes the premise for domain adaptation...
+
+![](https://tam-borine.github.io/RS/results_table.png)
+
+For context, the set-ups distinguish between training and testing dataset combinations. So Vanilla is when we train and test on images from source regions, Naive Transfer is when we train on source regions and test on target regions, with no added techniques, and Transfer with Adaptation is the same with added domain adaptation techniques (which we did not do in the end).
+
+In case I hadn't mentioned before, source and target domains are terms [used](http://imatge-upc.github.io/telecombcn-2016-dlcv/slides/D2L5-transfer.pdf) in domain adaptation/transfer learning.
+
+So that's all for now folks, watch for a string of posts coming up including the research summary and some fun examples of dataset shift.
+
 ## More segmentation maps {#moresegmentationmaps}
 _6th March 2019_
 
