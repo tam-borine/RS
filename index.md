@@ -20,7 +20,44 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Dealing with a class-imbalanced dataset](#imbalancedclasses)
 - [Weird Result](#weirdresults)
 - [More segmentation maps](#moresegmentationmaps)
+- [Emerging from the hole after write up (with results!)](#afterwriteup)
+- [Research Summary](#researchsummary)
 - Some future post
+
+## Research Summary {#researchsummary}
+_23rd May 2019_
+
+I think it's about time I gave a legible summary of the key objectives, methods and results of this project as it really isn't obvious and it might be useful for those who don't want to read the whole paper.
+
+**Objectives:**
+
+* To develop a model that delineates flooded areas from non-flooded areas on a global image dataset.
+* To naively transfer the model to perform on images from geographical regions it has not seen.
+* To improve on this naive performance using domain adaptation techniques.
+
+**Methods**
+
+Data = SAR images from Sentinel-1 (ESA) and vector data labels from Copernicus EMS (caution: not GT). 20,000 labelled image patches from around the world.
+Task = delineation aka semantic segmentation.
+Tools = Colab, Python, Javascript, Google Earth Engine, Keras, Tensorflow.
+
+There are two main stages to our analysis. The first stage involves developing a good classifier, which-when given labelled images—will identify which pixels are flooded and which are not. This ecompases the ‘Vanilla’ and ‘Naive Transfer’ Set-Ups from Table 2. The second stage, ‘Transfer with Adaptation’ (Table 2), involves adding domain adaptation techniques to the model to reduce the dip in performance we expect from dataset shift when we apply the model to unlabelled new regions in the Naive Transfer. Just in case: dataset shift is not the same as the regular dip between training and test from the bias-variance tradeoff. The second stage depends on the results of the first stage. During the first stage we empirically discover the extent of the dataset shift problem (Objective 2).
+
+![](https://tam-borine.github.io/RS/set-ups.png)
+
+Stage 1:
+
+Representation = CNN with [transposed convolution](https://tam-borine.github.io/RS/#transposeconvolutions)
+Evaluation/Loss = softmax cross entropy
+Optimisation = mini-batch gradient descent with adam opt
+ 
+Stage 2: 
+
+Augment the CNN architecture into a [Mean Teacher](https://arxiv.org/abs/1703.01780) (a variant of temporal [self-ensembling](https://arxiv.org/abs/1706.05208))
+
+**Results**
+
+See my [previous post](https://tam-borine.github.io/RS/#afterwriteup).
 
 ## Emerging from the hole after write up {#afterwriteup}
 _20th May 2019_
