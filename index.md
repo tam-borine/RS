@@ -30,16 +30,14 @@ _23rd May 2019_
 I think it's about time I gave a legible summary of the key objectives, methods and results of this project as it really isn't obvious and it might be useful for those who don't want to read the whole paper.
 
 **Objectives:**
-
 * To develop a model that delineates flooded areas from non-flooded areas on a global image dataset.
 * To naively transfer the model to perform on images from geographical regions it has not seen.
 * To improve on this naive performance using domain adaptation techniques.
 
-**Methods**
-
-Data = SAR images from Sentinel-1 (ESA) and vector data labels from Copernicus EMS (caution: not GT). 20,000 labelled image patches from around the world.
-Task = delineation aka semantic segmentation.
-Tools = Colab, Python, Javascript, Google Earth Engine, Keras, Tensorflow.
+**Methods:**
+* Data were Synthetic Aperture Radar (SAR) images of the globe from Sentinel-1 (ESA) and vector data from Copernicus EMS (caution: not real Ground Truth, more corroboratory, although I used them for training labels). I joined these datasets into 20,000 labelled image patches from around the world in GEE.
+* Task was delineation aka semantic segmentation or pixel-wise classification of flooded areas.
+* Tools included Colab and Datalab for environments, Python, Javascript, Google Earth Engine (GEE), Keras and Tensorflow.
 
 There are two main stages to our analysis. The first stage involves developing a good classifier, which-when given labelled images—will identify which pixels are flooded and which are not. This ecompases the ‘Vanilla’ and ‘Naive Transfer’ Set-Ups from Table 2. The second stage, ‘Transfer with Adaptation’ (Table 2), involves adding domain adaptation techniques to the model to reduce the dip in performance we expect from dataset shift when we apply the model to unlabelled new regions in the Naive Transfer. Just in case: dataset shift is not the same as the regular dip between training and test from the bias-variance tradeoff. The second stage depends on the results of the first stage. During the first stage we empirically discover the extent of the dataset shift problem (Objective 2).
 
@@ -47,9 +45,9 @@ There are two main stages to our analysis. The first stage involves developing a
 
 Stage 1:
 
-Representation = CNN with [transposed convolution](https://tam-borine.github.io/RS/#transposeconvolutions)
-Evaluation/Loss = softmax cross entropy
-Optimisation = mini-batch gradient descent with adam opt
+* Representation: CNN with [transposed convolution](https://tam-borine.github.io/RS/#transposeconvolutions)
+* Evaluation/Loss: softmax cross entropy
+* Optimisation: mini-batch gradient descent with adam opt
  
 Stage 2: 
 
