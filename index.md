@@ -22,7 +22,15 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [More segmentation maps](#moresegmentationmaps)
 - [Emerging from the hole after write up (with results!)](#afterwriteup)
 - [Research Summary](#researchsummary)
+- [Nomination for QMRG UG Dissertation Prize](#qmrg)
 - Some future post
+
+## Nomination for QMRG UG Dissertation Prize {#qmrg}
+_27th June 2019_
+
+I found out today that my university has nominated this project for the Quantiative Methods Research Group (QMRG) Undergraduate Dissertation Prize. Apparently it's a national prize (I have only been nominated though, results later in the year).
+
+But maybe it's a sign that some people think I am plausibly good at research?
 
 ## Research Summary {#researchsummary}
 _23rd May 2019_
