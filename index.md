@@ -23,7 +23,6 @@ Here I write about stuff as I pursue my dissertation on cross-region domain adap
 - [Emerging from the hole after write up (with results!)](#afterwriteup)
 - [Research Summary](#researchsummary)
 - [Nomination for QMRG UG Dissertation Prize](#qmrg)
-- Some future post
 
 ## Nomination for QMRG UG Dissertation Prize {#qmrg}
 _27th June 2019_
